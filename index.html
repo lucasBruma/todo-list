@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Todo app</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body class="body body-dark">
+    <img class="background-img" src="./images/bg-desktop-dark.jpg" alt="Background Dark" />
+    <div class="container">
+
+      <div class="title">
+        <h1>TODO</h1>
+        <img class="title__img" src="images/icon-sun.svg" alt="Icon sun" />
+        <img class="title__img--hidden" src="images/icon-moon.svg" alt="Icon moon" />
+      </div>
+
+      <div class="list-todo">
+
+        <div class="todo-item block--dark new-item">
+          <input
+          class="todo-item__checkbox btn-add"
+          type="checkbox"
+        />
+          <input class="todo-item__input" placeholder="Create a new todo..."></input>
+        </div>
+
+        <div class="list-todo__items list-todo__items--all">
+        </div>
+
+        <div class="list-todo__states block--dark">
+          <p class="items-left">0 items left</p>
+          <div class="items-state">
+            <p class="items-state__item--all">All</p>
+            <p class="items-state__item--active">Active</p>
+            <p class="items-state__item--completed">Completed</p>
+          </div>
+          <p class="items-clear">Clear Completed</p>
+        </div>
+
+        <div class="mobile-item items-state block--dark">
+          <p class="items-state__item--all">All</p>
+          <p class="items-state__item--active">Active</p>
+          <p class="items-state__item--completed">Completed</p>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>  -->
+  <!-- jsDelivr :: Sortable :: Latest (https://www.jsdelivr.com/package/npm/sortablejs) -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  <script src="app.js"></script>
+  </body>
+</html>

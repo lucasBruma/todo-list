@@ -1,0 +1,277 @@
+:root{
+
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 1440px;
+    font-family: 'Josefin Sans', sans-serif;
+    height: 100vh;
+}
+
+.body-dark{
+    background-color: hsl(235, 21%, 11%);
+    color: hsl(234, 39%, 85%);
+}
+
+.body-light{
+    background-color: hsl(236, 33%, 92%);
+    color: hsl(235, 19%, 35%);
+}
+
+p{
+    font-size: 18px;
+    cursor: default;
+}
+
+body img{
+    position: relative;
+}
+
+.container{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+}
+
+.title{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    
+}
+
+.title h1{
+    letter-spacing: 1rem;
+    color: hsl(236, 33%, 92%);
+}
+
+.title__img{
+    width: 32px;
+}
+
+.title__img--hidden{
+    display: none;
+}
+
+.title__img:hover{
+    cursor: pointer;
+}
+
+.list-todo{
+    position: fixed;
+    padding-bottom: 30px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.new-item{
+    margin-bottom: 20px;
+    box-shadow: 0px 23px 31px 0px rgba(0,0,0,0.4);
+    border-radius: 10px;
+}
+
+.todo-item{
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    position: relative;
+}
+
+.todo-item:nth-child(1) {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }  
+
+.dark-border {
+    border-bottom: 1px solid hsl(233, 14%, 35%);
+}
+
+.light-border {
+    border-bottom: 1px solid hsl(233, 11%, 84%);
+}
+
+
+.block--dark{
+    background-color: hsl(235, 24%, 19%);
+}
+
+.block--light{
+    background-color: hsl(0, 0%, 98%);
+}
+
+.todo-item__input
+ {
+    outline: none;
+    border: 0;
+    font-size: 18px;
+}
+
+.block--dark > .todo-item__input{
+    background-color: hsl(235, 24%, 19%);
+    color: hsl(234, 39%, 85%);
+}
+
+.block--light > .todo-item__input{
+    background-color: hsl(0, 0%, 98%);
+    color: hsl(235, 24%, 19%);
+}
+
+.block--light > .todo-item__text{
+    color: hsl(235, 24%, 19%);
+}
+
+.todo-item__text{
+    color:hsl(234, 39%, 85%)
+}
+
+::placeholder{
+    color: hsl(234, 11%, 52%);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+
+input[type=checkbox] {
+    appearance: none;
+    border: 1px solid hsl(237, 14%, 26%);
+    width: 20px;
+    height: 20px;
+    border-radius: 80%;
+    cursor: pointer;
+    transition: border .5s;
+}
+
+input[type=checkbox]:hover{
+    border: 1px solid hsl(236, 33%, 92%);
+}
+  
+.item:checked{
+    background: url("images/icon-check.svg") center center no-repeat;
+    background-color: rgb(74, 178, 242) ;
+}
+
+.black--dark > .new-item > input[type=checkbox]:checked{
+    background-color: hsl(235, 24%, 19%);
+}
+
+.black--light > .new-item > input[type=checkbox]:checked{
+    background-color: hsl(0, 0%, 98%);
+}
+
+.list-todo__items--active{
+    display: none;
+}
+
+.list-todo__items--complete{
+    display: none;
+}
+
+.crossed-out{
+    text-decoration: line-through;
+    color: hsl(234, 11%, 52%)!important;
+}
+
+.not-crossed-out {
+    text-decoration: none;
+}
+
+.todo-item__cross{
+    display: none;
+    position: absolute;
+    left: 91%;
+    top: 18px;
+}
+
+.todo-item__cross:hover{
+    cursor: pointer;
+}
+
+.list-todo__items{
+    box-shadow: 1px 16px 33px -1px rgba(0,0,0,0.65);
+}
+
+.list-todo__states{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 1px 16px 33px -1px rgba(0,0,0,0.65);
+}
+
+.list-todo__states p{
+    font-size: 13px;
+    color:hsl(234, 11%, 52%);
+}
+
+.items-state{
+    display: flex;
+    gap: 20px;
+    font-weight: 700;
+}
+
+.selected {
+    color:hsl(234, 39%, 85%);
+    transition: all .5s;
+}
+
+.items-left,.items-clear{
+    width: 100%;
+}
+
+.items-clear{
+    text-align: right;
+}
+
+.items-state p:hover,.items-clear:hover{
+    color: hsl(236, 33%, 92%);
+    transition: all 1s;
+    cursor: pointer;
+}
+
+.mobile-item{
+    display: none;
+}
+
+@media (width < 400px) {
+    .container{
+        width: 85%;
+    }
+
+    .list-todo__states > .items-state{
+        display: none;
+    }
+
+    .mobile-item{
+        display: flex;
+        margin-top: 20px;
+        justify-content: center;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    .mobile-item p{
+        font-size: 13px;
+        color:hsl(234, 11%, 52%);
+    }
+
+    .todo-item__cross{
+        display: block;
+        left: 88%;
+    }
+    
+}
+
+/* DRAG AND DROP */
+.ghost{
+    opacity: 0;
+}
