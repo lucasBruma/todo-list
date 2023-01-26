@@ -1,17 +1,19 @@
 // Creation and deletion of "todo-item" elements.
 const itemsList = document.querySelector(".list-todo__items");
+let itemCount = 1;
 
 function addNewTodo(newTodo) {
     const newItem = document.createElement("div");
     newItem.classList.add("todo-item", "active","dark-border"); 
-    newItem.setAttribute("draggable",true)
 
     const newCheckbox = document.createElement("input");
     newCheckbox.classList.add("todo-item__checkbox", "item");
     newCheckbox.setAttribute("type", "checkbox");
+    newCheckbox.setAttribute("id", `item-${itemCount}`);
 
-    const newText = document.createElement("p");
+    const newText = document.createElement("label");
     newText.classList.add("todo-item__text", "not-crossed-out");
+    newText.setAttribute("for", `item-${itemCount}`);
     newText.textContent = newTodo;
 
     const newCross = document.createElement("img");
@@ -24,6 +26,8 @@ function addNewTodo(newTodo) {
     newItem.appendChild(newCross);
 
     itemsList.appendChild(newItem);
+
+    itemCount++;
 }
 
 function clearNewTodo(){
