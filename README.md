@@ -2,10 +2,6 @@
 
 ![Design preview for the Todo app coding challenge](./design/desktop-preview.jpg)
 
-## Welcome! 👋
-
-Thanks for checking out this front-end coding challenge.
-
 [Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
 
 **To do this challenge, you need a good understanding of HTML, CSS and JavaScript.**
@@ -26,7 +22,7 @@ X Delete todos from the list
 X Filter by all/active/complete todos
 X Clear all completed todos
 X Toggle light and dark mode
-- **Bonus**: Drag and drop to reorder items on the list
+X **Bonus**: Drag and drop to reorder items on the list
 
 Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
 

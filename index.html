@@ -33,7 +33,9 @@
     </style>
   </head>
   <body class="body body-dark">
-    <img class="background-img" src="./images/bg-desktop-dark.jpg" alt="Background Dark" />
+    <div class="img-container">
+      <img class="background-img" src="./images/bg-desktop-dark.jpg" alt="Background Dark" />
+    </div>
     <div class="container">
 
       <div class="title">
@@ -52,7 +54,7 @@
           <input class="todo-item__input" placeholder="Create a new todo..."></input>
         </div>
 
-        <div class="list-todo__items list-todo__items--all">
+        <div class="list-todo__items list-todo__items--all block--dark">
         </div>
 
         <div class="list-todo__states block--dark">
@@ -70,9 +72,13 @@
           <p class="items-state__item--active">Active</p>
           <p class="items-state__item--completed">Completed</p>
         </div>
-
-
+        
+        <div class="drag-drop-text">
+          <p>Drag and drop to reorder list</p>
+        </div>
       </div>
+
+
 
     </div>
 
@@ -82,6 +88,6 @@
   </div>  -->
   <!-- jsDelivr :: Sortable :: Latest (https://www.jsdelivr.com/package/npm/sortablejs) -->
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js" type="module"></script>
   </body>
 </html>
