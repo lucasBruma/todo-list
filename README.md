@@ -77,6 +77,6 @@ const array = [...document.querySelectorAll('.active')];
 ## Author
 
 - Website - [Lucas Brumatti](https://lucasbrumatti.netlify.app/)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+
 
 
