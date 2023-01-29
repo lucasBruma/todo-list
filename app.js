@@ -1,5 +1,5 @@
 import functions from "./todo-items.js";
-const {addNewTodo,clearNewTodo,getValueInput,itemsList, removeTodo,showCross,hideCross,crossedOutText} = functions;
+const {addNewTodo,clearNewTodo,getValueInput,itemsList, removeTodo,showCross,hideCross,crossedOutText,createElements, getList} = functions;
 import functionsState from "./todo-states.js";
 const {updateItemsLeft,filter,setSelected,removeCompleted} = functionsState;
 import functionsTheme from "./theme-toggle.js";
@@ -13,22 +13,45 @@ const stateAll = document.querySelector(".items-state__item--all");
 const stateActive = document.querySelector(".items-state__item--active");
 const stateCompleted = document.querySelector(".items-state__item--completed");
 const toggleTheme = document.querySelector(".title");
+const mobileItems = document.querySelector(".mobile-item");
+const emptyList = document.querySelector(".empty-list");
 
+window.addEventListener('DOMContentLoaded',()=>{
+    createElements();
+    updateItemsLeft(); 
+    const list = getList();
+    if(list.length != 0) emptyList.style.display = "none";
+})
 
 //events todo-items
 btnAdd.addEventListener('click',()=>{
-    let valorInput = getValueInput();
-    addNewTodo(valorInput);
-    clearNewTodo();
-    updateItemsLeft();
+    let valueInput = getValueInput();
+
+    if(valueInput.trim().length === 0){
+        alert("Write something!");
+        clearNewTodo();
+    }else{
+        addNewTodo(valueInput);
+        updateItemsLeft(); 
+        clearNewTodo();
+        emptyList.style.display = "none";
+    }
+
 })
+
 
 input.addEventListener("keyup", (e) =>{
     if (e.keyCode === 13) {
-        let valorInput = getValueInput();
-        addNewTodo(valorInput);
-        clearNewTodo();
-        updateItemsLeft();
+        let valueInput = getValueInput();
+        if(valueInput.trim().length === 0){
+            alert("Write something!");
+            clearNewTodo();
+        }else{
+            addNewTodo(valueInput);
+            updateItemsLeft(); 
+            clearNewTodo();
+            emptyList.style.display = "none";
+        }
     }
 })
 
@@ -41,6 +64,8 @@ itemsList.addEventListener('click', (e)=>{
 
     if(e.target.className == "todo-item__cross"){
         removeTodo(e.target.parentNode);
+        const list = getList();
+        if(list.length == 0) emptyList.style.display = "block";
     }
 
     updateItemsLeft();
@@ -82,9 +107,30 @@ stateItems.addEventListener('click',(e)=>{
         filter('.active','.completed')
         setSelected(stateCompleted,stateAll,stateActive);
     }
+});
+
+mobileItems.addEventListener('click',(e)=>{
+    if(e.target.className == "items-state__item--all"){
+        filter(undefined,'.active, .completed');
+        setSelected(stateAll,stateActive,stateCompleted);
+    }
+
+    if(e.target.className == "items-state__item--active"){
+        filter('.completed','.active')
+        setSelected(stateActive,stateAll,stateCompleted);
+    }
+
+    if(e.target.className == "items-state__item--completed"){
+        filter('.active','.completed')
+        setSelected(stateCompleted,stateAll,stateActive);
+    }
 })
 
-clearTodos.addEventListener('click',removeCompleted);
+clearTodos.addEventListener('click',()=>{
+    removeCompleted();
+    const list = getList();
+    if(list.length == 0) emptyList.style.display = "block";
+});
 
 //toggle dark and light mode
 
@@ -110,5 +156,27 @@ toggleTheme.addEventListener('click',(e)=>{
 Sortable.create(itemsList,{
     animation: 150,
     ghostClass: 'ghost',
+	group: "order",
+	store: {
+        get: function (sortable) {
+            let order = localStorage.getItem(sortable.options.group.name);
+            return order ? order.split('|') : [];
+        },
+    
+        set: function (sortable) {
+            let order = sortable.toArray();
+            let list = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+            let newList = [];
+        
+            for(let i=0;i<list.length;i++){
+                let obj = list.find(x => x.id == order[i]);
+                newList.push(obj);
+            }
+        
+            localStorage.setItem('items',JSON.stringify(newList));
+            localStorage.setItem(sortable.options.group.name,order.join('|'));
+        }
+    
+	}
 });
 

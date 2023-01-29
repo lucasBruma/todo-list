@@ -73,6 +73,24 @@ p{
     margin-bottom: 20px;
     box-shadow: 0px 12px 31px 0px rgba(0,0,0,0.4);
     border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    gap: 20px;
+}
+
+.empty-list{
+    padding: 1rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+}
+
+.empty-list-state{
+    display: none;
+    padding: 1rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
 }
 
 .todo-item{
@@ -126,7 +144,8 @@ p{
 }
 
 .todo-item__text{
-    color:hsl(234, 39%, 85%)
+    color:hsl(234, 39%, 85%);
+    padding-top: 3.5px;
 }
 
 ::placeholder{
@@ -178,7 +197,7 @@ input[type=checkbox]:hover{
     display: none;
 }
 
-.list-todo__items--complete{
+.list-todo__items--completed{
     display: none;
 }
 
@@ -225,7 +244,7 @@ input[type=checkbox]:hover{
 }
 
 .selected {
-    color:hsl(234, 39%, 85%);
+    color:hsl(234, 39%, 85%) !important;
     transition: all .5s;
 }
 

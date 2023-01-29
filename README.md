@@ -68,6 +68,7 @@ input[type=checkbox]:hover{
 ```js
 const array = [...document.querySelectorAll('.active')];
 ```
+- LocalStorage
 
 ### Useful resources
 

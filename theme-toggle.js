@@ -52,6 +52,12 @@ function changeItems(){
 
     const mobileItem = document.querySelector(".mobile-item");
     addRemoveLightDark(mobileItem);
+
+    const emptyList = document.querySelector(".empty-list");
+    addRemoveLightDark(emptyList);
+
+    const emptyListState = document.querySelector(".empty-list-state");
+    addRemoveLightDark(emptyListState);
 }
 
 const functionsTheme = {

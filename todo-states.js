@@ -1,3 +1,5 @@
+import functions from "./todo-items.js";
+const {removeTodo, getList} = functions;
 // Functions related to managing events of the list (the elements of the list state)
 const itemsLeft = document.querySelector(".items-left");
 
@@ -16,9 +18,18 @@ function filter(hideClass,showClass){
         });
     }
 
-    document.querySelectorAll(showClass).forEach((item) =>{
-        item.style.display = "flex";
-    });
+    const listShowClass = document.querySelectorAll(showClass)
+    const list = getList();
+
+    if([...listShowClass].length == 0 && list.length != 0){
+        document.querySelector('.empty-list-state').style.display = "block";
+    }else{
+        document.querySelector('.empty-list-state').style.display = "none";
+        listShowClass.forEach((item) =>{
+            item.style.display = "flex";
+        });
+    }
+
 }
 
 function setSelected(stateSelected, stateNotSelected, stateNotSelected2){
@@ -31,8 +42,8 @@ function setSelected(stateSelected, stateNotSelected, stateNotSelected2){
 // clear complete todos
 function removeCompleted(){
     document.querySelectorAll('.completed').forEach((item) =>{
-        item.remove();
-    })
+        removeTodo(item);
+    });
 }
 
 const functionsState = {
