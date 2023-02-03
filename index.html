@@ -35,13 +35,19 @@
       </div>
 
       <div class="list-todo">
+        <div class="list-todo__top">
+          <div class="block--dark new-item">
+            <input
+            class="todo-item__checkbox btn-add"
+            type="checkbox"
+          />
+            <input class="todo-item__input" placeholder="Create a new todo..."></input>
+          </div>
 
-        <div class="block--dark new-item">
-          <input
-          class="todo-item__checkbox btn-add"
-          type="checkbox"
-        />
-          <input class="todo-item__input" placeholder="Create a new todo..."></input>
+          <div class="block--dark container-search">
+              <input class="todo-item__search filter" type="search" placeholder="Search">
+              <img class="todo-item__lens" src="./images/lens.png" alt="Lens">
+          </div>
         </div>
 
         <div class="empty-list block--dark">There's no items in the list. Add new ones!</div>
@@ -70,13 +76,26 @@
           <p>Drag and drop to reorder list</p>
         </div>   
 
+        
+
         <div class="attribution">
           Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
           Coded by <a href="#">Lucas Brumatti</a>.
         </div> 
       </div>
     </div>
- 
+
+    <div class="container-modal">
+      <div class="modal block--dark">
+        <h2>Edit and accept changes</h2>
+        <input type="text" class="modal__input">
+        <div class="modal__buttons">
+          <button type="button" class="modal__accept">Accept changes</button>
+          <button type="button" class="modal__cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
   <script src="app.js" type="module"></script>
   </body>

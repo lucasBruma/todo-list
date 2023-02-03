@@ -58,6 +58,12 @@ function changeItems(){
 
     const emptyListState = document.querySelector(".empty-list-state");
     addRemoveLightDark(emptyListState);
+
+    const search = document.querySelector(".container-search");
+    addRemoveLightDark(search);
+
+    const modal = document.querySelector(".modal");
+    addRemoveLightDark(modal);
 }
 
 const functionsTheme = {

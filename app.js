@@ -1,10 +1,9 @@
 import functions from "./todo-items.js";
-const {addNewTodo,clearNewTodo,getValueInput,itemsList, removeTodo,showCross,hideCross,crossedOutText,createElements, getList} = functions;
+const {addNewTodo,clearNewTodo,getValueInput,itemsList, removeTodo,editInput,crossedOutText,createElements, getList} = functions;
 import functionsState from "./todo-states.js";
 const {updateItemsLeft,filter,setSelected,removeCompleted} = functionsState;
 import functionsTheme from "./theme-toggle.js";
 const {showHideIcons,changeImage,changeBg,changeItems} = functionsTheme;
-
 const btnAdd = document.querySelector(".btn-add");
 const input = document.querySelector(".todo-item__input");
 const clearTodos = document.querySelector(".items-clear");
@@ -15,6 +14,8 @@ const stateCompleted = document.querySelector(".items-state__item--completed");
 const toggleTheme = document.querySelector(".title");
 const mobileItems = document.querySelector(".mobile-item");
 const emptyList = document.querySelector(".empty-list");
+const search = document.querySelector('.todo-item__search');
+const lens = document.querySelector('.todo-item__lens');
 
 window.addEventListener('DOMContentLoaded',()=>{
     createElements();
@@ -63,31 +64,31 @@ itemsList.addEventListener('click', (e)=>{
     }
 
     if(e.target.className == "todo-item__cross"){
-        removeTodo(e.target.parentNode);
+        removeTodo(e.target.parentNode.parentNode);
         const list = getList();
         if(list.length == 0) emptyList.style.display = "block";
+    }
+
+    if(e.target.className == "todo-item__pencil"){
+        editInput(e.target.parentElement.previousSibling,e)
     }
 
     updateItemsLeft();
 })
 
+//search
 
-itemsList.addEventListener('mouseover',(e)=>{
-    let string = e.target.className.substring(0,10);
-    if(string == "todo-item "){
-        showCross(e.target.lastElementChild)
-    }else{
-        showCross(e.relatedTarget.lastElementChild)
+search.addEventListener('keyup', e=>{
+        document.querySelectorAll(".todo-item__text").forEach(el =>{
+            el.textContent.toLowerCase().includes(e.target.value.toLowerCase())
+                ?el.parentNode.classList.remove("filter")
+                :el.parentNode.classList.add("filter")
+        })
     }
-})
+)
 
-itemsList.addEventListener('mouseout',(e)=>{
-    let string = e.target.className.substring(0,10);
-    if(string== "todo-item "){
-        hideCross(e.target.lastElementChild);
-    }else{
-        hideCross(e.relatedTarget.lastElementChild);
-    }
+lens.addEventListener('click', ()=>{
+    search.classList.toggle('filter');
 })
 
 //events todo-states

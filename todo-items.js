@@ -1,6 +1,10 @@
 // Creation and deletion of "todo-item" elements.
 const itemsList = document.querySelector(".list-todo__items");
-
+const modal = document.querySelector(".container-modal");
+const modalInput = document.querySelector(".modal__input");
+const modalAccept = document.querySelector(".modal__accept");
+const modalCancel = document.querySelector(".modal__cancel");
+let nodeCurrent;
 
 function addNewTodo(newTodo) {
     let arrayList = getList();
@@ -57,14 +61,25 @@ function createItem(name, index, state){
     newText.setAttribute("for", `item-${index}`);
     newText.textContent = name;
 
+    const containerItems = document.createElement('div');
+    containerItems.classList.add('todo-item__actions')
+
     const newCross = document.createElement("img");
     newCross.setAttribute("src", "./images/icon-cross.svg");
     newCross.setAttribute("alt", "Cross");
     newCross.classList.add("todo-item__cross");
 
+    const newPencil = document.createElement("img");
+    newPencil.setAttribute("src", "./images/pencil.png");
+    newPencil.setAttribute("alt", "Pencil");
+    newPencil.classList.add("todo-item__pencil");
+
+    containerItems.appendChild(newPencil);
+    containerItems.appendChild(newCross);
+
     newItem.appendChild(newCheckbox);
     newItem.appendChild(newText);
-    newItem.appendChild(newCross);
+    newItem.appendChild(containerItems);
 
     itemsList.appendChild(newItem);
 
@@ -87,13 +102,24 @@ function removeTodo(node){
     node.remove();
 }
 
-function showCross(cross){
-    cross.style.display = "block"
+function editInput(node){
+    modal.style.display = 'flex';
+    modalInput.value = node.textContent;
+    nodeCurrent = node;
 }
 
-function hideCross(cross){
-    cross.style.display = "none";
-}
+modalAccept.addEventListener('click',()=>{
+    let arrayList = getList();
+    const index = arrayList.findIndex(e => e.name === nodeCurrent.textContent)
+    nodeCurrent.textContent = modalInput.value;
+    arrayList[index].name = modalInput.value;
+    localStorage.setItem('items',JSON.stringify(arrayList));
+    modal.style.display = "none";
+})
+
+modalCancel.addEventListener('click',()=>{
+    modal.style.display = "none";
+})
 
 function crossedOutText(e){
     let text = e.target.nextSibling;
@@ -120,8 +146,7 @@ const functions = {
     clearNewTodo,
     getValueInput,
     removeTodo,
-    showCross,
-    hideCross,
+    editInput,
     crossedOutText,
     createElements,
     itemsList,
